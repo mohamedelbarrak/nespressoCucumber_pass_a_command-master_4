@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.time.Duration;
 import java.util.List;
 
-import static org.nespresso.home.HomePage.driver;
+import static org.nespresso.driver.Driver.driver;
 
 
 public class ListProductPage {
@@ -19,7 +19,6 @@ public class ListProductPage {
     final List<String> quantitys = List.of("0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200", "250", "300");
 
     public ListProductPage(){
-        //this.driver = driver;
         PageFactory.initElements(driver,this);
     }
     public void ajouter_au_panier(){

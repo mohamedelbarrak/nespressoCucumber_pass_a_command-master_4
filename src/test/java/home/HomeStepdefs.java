@@ -2,6 +2,7 @@ package home;
 
 import io.cucumber.core.internal.com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import io.cucumber.java.After;
+import org.nespresso.driver.Driver;
 import org.nespresso.home.HomePage;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -13,13 +14,15 @@ import org.junit.runner.RunWith;
 import org.nespresso.listProduct.ListProductPage;
 import org.openqa.selenium.WebDriver;
 
+import static org.nespresso.driver.Driver.driver;
+
 @RunWith(Cucumber.class)
 public class HomeStepdefs {
     HomePage homePage;
     ListProductPage listProductPage;
     @Before
     public void prepateDriver() {
-
+        new Driver();
         homePage = new HomePage();
         listProductPage = new ListProductPage();
     }
@@ -56,7 +59,7 @@ public class HomeStepdefs {
 
     @After
     public void terminateBrowser(){
-        homePage.terminateBrowser();
+        driver.quit();
     }
 
 }

@@ -12,14 +12,14 @@ import org.openqa.selenium.support.PageFactory;
 import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import static org.nespresso.driver.Driver.driver;
+
 //BDD_Test_comm2
 //BDD_Test
 public class HomePage {
-    public static WebDriver driver;
-    String webDriverType = "webdriver.chrome.driver";
-    String webDriverPath = "C:/melbarrak/Applications/intellijSeleniumJarAndDrivers/chromedriver_win32/chromedriver.exe";
+
     String nespressoUrl = "https://www.nespresso.com/fr/fr/";
-    final List<String> quantitys = List.of("0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200", "250", "300");
 
     @FindBy(xpath = "//button[@id='_evidon-banner-acceptbutton']")//org.openqa.selenium.support
     public WebElement acceptCoukies;
@@ -30,13 +30,6 @@ public class HomePage {
     @FindBy(xpath = "(//span[contains(@class,'HeaderNavigationBarItem')])[1]")
     public WebElement coffeeMenuChoice;
 
-    //@FindBy(xpath = "//div[starts-with(@class, 'ProductList__content')]//div[@class='ProductListGroup'][1]//div[@class='ProductListElementFilter']//child::div[@class='ProductListElement__content ProductListElement__content--capsule']//child::div[starts-with(@id, 'AddToBagButton')]")
-    //public WebElement addToCart;
-
-    final String QUANTITY = "//div[starts-with(@class, 'ProductList__content')]//div[@class='ProductListGroup'][1]//div[@class='ProductListElementFilter']//child::div[@class='ProductListElement__content ProductListElement__content--capsule']//child::div[starts-with(@id, 'AddToBagButton')]//descendant::li[@class='PredefinedQuantityList__quantity']["+"2"+"]";
-    @FindBy(xpath = QUANTITY)
-    public WebElement choiceQuantity;
-
     @FindBy(xpath = "//button[@id='ta-mini-basket__open']//child::span")
     public WebElement pannierQuantityNumber;
 
@@ -44,8 +37,7 @@ public class HomePage {
     public WebElement pannierColor;
 
     public HomePage() {
-        System.setProperty(webDriverType, webDriverPath);
-        this.driver = new ChromeDriver();
+
         PageFactory.initElements(driver,this);
     }
 
@@ -119,9 +111,5 @@ public class HomePage {
                 }
                 break;
         }
-    }
-
-    public void terminateBrowser() {
-        this.driver.quit();
     }
 }
