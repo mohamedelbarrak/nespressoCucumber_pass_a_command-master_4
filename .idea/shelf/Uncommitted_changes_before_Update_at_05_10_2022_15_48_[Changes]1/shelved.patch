@@ -1,0 +1,110 @@
+Index: src/main/java/org/nespresso/home/HomePage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.nespresso.home;\r\n\r\nimport org.openqa.selenium.By;\r\nimport org.openqa.selenium.WebDriver;\r\nimport org.openqa.selenium.WebElement;\r\nimport org.openqa.selenium.chrome.ChromeDriver;\r\nimport org.openqa.selenium.interactions.Actions;\r\nimport org.openqa.selenium.support.FindBy;\r\nimport org.openqa.selenium.support.Color;\r\nimport org.openqa.selenium.support.PageFactory;\r\n\r\nimport java.time.Duration;\r\nimport java.util.List;\r\nimport java.util.concurrent.TimeUnit;\r\n//BDD_Test\r\npublic class HomePage {\r\n    WebDriver driver;\r\n    String webDriverType = \"webdriver.chrome.driver\";\r\n    String webDriverPath = \"C:/melbarrak/Applications/intellijSeleniumJarAndDrivers/chromedriver_win32/chromedriver.exe\";\r\n    String nespressoUrl = \"https://www.nespresso.com/fr/fr/\";\r\n    final List<String> quantitys = List.of(\"0\", \"10\", \"20\", \"30\", \"40\", \"50\", \"60\", \"70\", \"80\", \"90\", \"100\", \"150\", \"200\", \"250\", \"300\");\r\n\r\n    @FindBy(xpath = \"//button[@id='_evidon-banner-acceptbutton']\")//org.openqa.selenium.support\r\n    public WebElement acceptCoukies;\r\n\r\n    @FindBy(xpath = \"(//span[contains(@class,'HeaderNavigationBarItem')])[1]\")\r\n    public WebElement coffeeMenu;\r\n\r\n    @FindBy(xpath = \"(//span[contains(@class,'HeaderNavigationBarItem')])[1]\")\r\n    public WebElement coffeeMenuChoice;\r\n\r\n    @FindBy(xpath = \"//div[starts-with(@class, 'ProductList__content')]//div[@class='ProductListGroup'][1]//div[@class='ProductListElementFilter']//child::div[@class='ProductListElement__content ProductListElement__content--capsule']//child::div[starts-with(@id, 'AddToBagButton')]\")\r\n    public WebElement addToCart;\r\n\r\n    final String QUANTITY = \"//div[starts-with(@class, 'ProductList__content')]//div[@class='ProductListGroup'][1]//div[@class='ProductListElementFilter']//child::div[@class='ProductListElement__content ProductListElement__content--capsule']//child::div[starts-with(@id, 'AddToBagButton')]//descendant::li[@class='PredefinedQuantityList__quantity'][\"+\"2\"+\"]\";\r\n    @FindBy(xpath = QUANTITY)\r\n    public WebElement choiceQuantity;\r\n\r\n    @FindBy(xpath = \"//button[@id='ta-mini-basket__open']//child::span\")\r\n    public WebElement pannierQuantityNumber;\r\n\r\n    @FindBy(xpath = \"//button[@id='ta-mini-basket__open']\")\r\n    public WebElement pannierColor;\r\n\r\n    public HomePage() {\r\n        System.setProperty(webDriverType, webDriverPath);\r\n        this.driver = new ChromeDriver();\r\n        PageFactory.initElements(driver,this);\r\n    }\r\n\r\n    public void openPage(){\r\n        driver.get(nespressoUrl);\r\n    }\r\n\r\n    public void acceptCoukies(){\r\n        //driver.findElement(By.id(\"_evidon-banner-acceptbutton\")).click();\r\n        //driver.findElement(By.xpath(\"//button[@id='_evidon-banner-acceptbutton']\")).click();\r\n        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);\r\n        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));\r\n        acceptCoukies.click();\r\n    }\r\n\r\n    public void ouvrire_la_page_de_produit(){\r\n        new Actions(driver).clickAndHold(coffeeMenu).perform();\r\n        //implicite Thread.sleep(5000);//TimeUnit.SECONDS.sleep(5);//Thread.sleep(5000);\r\n        //vs\r\n        //explicite driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);\r\n        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));\r\n        coffeeMenuChoice.click();\r\n    }\r\n\r\n    public void ajouter_au_panier(){\r\n        addToCart.click();\r\n    }\r\n\r\n    public void choisir_la_quantite(String quantite){\r\n        String quantitySelectedIndexForqQuantitysList = String.valueOf(quantitys.indexOf(quantite)+1);\r\n        String QUANTITY = \"//div[starts-with(@class, 'ProductList__content')]//div[@class='ProductListGroup'][1]//div[@class='ProductListElementFilter']//child::div[@class='ProductListElement__content ProductListElement__content--capsule']//child::div[starts-with(@id, 'AddToBagButton')]//descendant::li[@class='PredefinedQuantityList__quantity'][\"+quantitySelectedIndexForqQuantitysList+\"]\";\r\n        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));\r\n        driver.findElement(By.xpath(QUANTITY)).click();\r\n        System.out.println(\"quantitySelected: \" + quantitySelectedIndexForqQuantitysList);\r\n    }\r\n\r\n    public void votre_panier_change(String quantite) throws InterruptedException {\r\n        //TimeUnit.SECONDS.sleep(3);\r\n        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));\r\n        TimeUnit.SECONDS.sleep(5);\r\n        String pannierQuantity = pannierQuantityNumber.getText();\r\n        //\r\n\r\n        //getColor\r\n        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));\r\n        String pannierColor_background_color = pannierColor.getCssValue(\"background-color\");\r\n        String pannierColorAsHex = Color.fromString(pannierColor_background_color).asHex();\r\n        System.out.println(\"pannierQuantity:\"+pannierQuantity);\r\n        System.out.println(\"pannierColor_background_color_2:\"+Color.fromString(pannierColor_background_color).asHex());//#3d8705\r\n        //System.out.println(\"pannierColorAsHex: \"+pannierColorAsHex+\" pannierColorAsHex \"+pannierColorAsHex);\r\n        //3 #4c9018 //4 #3d8705\r\n        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));\r\n        switch (quantite){\r\n            case \"0\":\r\n                if (pannierQuantity.equalsIgnoreCase(quantite)){\r\n                    System.out.println(\"same quantity 1\");\r\n                }else {\r\n                    System.out.println(\"erreur 1\");\r\n                    driver.findElement(By.xpath(\"//erreur\"));\r\n                }\r\n                break;\r\n            default:\r\n                if (pannierQuantity.equalsIgnoreCase(quantite) && pannierColorAsHex.equalsIgnoreCase(\"#3d8705\")){\r\n                    System.out.println(\"same quantity 2\");\r\n                }else {\r\n                    System.out.println(\"erreur 2\");\r\n                    driver.findElement(By.xpath(\"//erreur\"));\r\n                }\r\n                break;\r\n        }\r\n    }\r\n\r\n    public void terminateBrowser() {\r\n        this.driver.quit();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/nespresso/home/HomePage.java b/src/main/java/org/nespresso/home/HomePage.java
+--- a/src/main/java/org/nespresso/home/HomePage.java	(revision bfc225591489a4f22899f439469c0d673d7ae3c6)
++++ b/src/main/java/org/nespresso/home/HomePage.java	(date 1664981287177)
+@@ -12,6 +12,7 @@
+ import java.time.Duration;
+ import java.util.List;
+ import java.util.concurrent.TimeUnit;
++//BDD_Test_comm2
+ //BDD_Test
+ public class HomePage {
+     WebDriver driver;
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"56739233-ef34-4d25-8529-30fca3dbfffe\" name=\"Changes\" comment=\"com1\">\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/nespresso/home/HomePage.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/nespresso/home/HomePage.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"BDD\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2FOZOM0hmphAkDRilU1SKb8ZeUZ\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,\r\n    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,\r\n    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,\r\n    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/melbarrak/Tests/Tests_Automatiques/intellij_projects/nespressoCucumber_pass_a_command-master/nespressoCucumber_pass_a_command-master&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.28965518&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\r\n      <recent name=\"\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Cucumber Java.Feature: Home (1)\">\r\n    <configuration name=\"Feature: Home (1)\" type=\"CucumberJavaRunConfigurationType\" factoryName=\"Cucumber java\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"CUCUMBER_CORE_VERSION\" value=\"5\" />\r\n      <option name=\"FILE_PATH\" value=\"$PROJECT_DIR$/features/Home.feature\" />\r\n      <option name=\"GLUE\" value=\"home\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"io.cucumber.core.cli.Main\" />\r\n      <module name=\"nespressoCucumber_pass_a_command-master\" />\r\n      <option name=\"PROGRAM_PARAMETERS\" value=\" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter\" />\r\n      <option name=\"SUGGESTED_NAME\" value=\"Feature: Home\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$MODULE_WORKING_DIR$\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"io.cucumber.core.cli.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Feature: Home\" type=\"CucumberJavaRunConfigurationType\" factoryName=\"Cucumber java\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"CUCUMBER_CORE_VERSION\" value=\"5\" />\r\n      <option name=\"FILE_PATH\" value=\"$PROJECT_DIR$/features/Home.feature\" />\r\n      <option name=\"GLUE\" value=\"home\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"io.cucumber.core.cli.Main\" />\r\n      <module name=\"nespressoCucumber\" />\r\n      <option name=\"PROGRAM_PARAMETERS\" value=\" --plugin org.jetbrains.plugins.cucumber.java.run.CucumberJvm5SMFormatter\" />\r\n      <option name=\"SUGGESTED_NAME\" value=\"Feature: Home\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$MODULE_WORKING_DIR$\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"io.cucumber.core.cli.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"HomeStepdefs\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"nespressoCucumber\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\".*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"home\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"home.HomeStepdefs\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"HomeStepdefs.lutilisateur_est_dans_la_page_home\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"nespressoCucumber\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\".*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"home\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"home.HomeStepdefs\" />\r\n      <option name=\"METHOD_NAME\" value=\"lutilisateur_est_dans_la_page_home\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"HomeStepdefs.ouvrire_la_page_de_produit\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"nespressoCucumber\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\".*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"home\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"home.HomeStepdefs\" />\r\n      <option name=\"METHOD_NAME\" value=\"ouvrire_la_page_de_produit\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Cucumber Java.Feature: Home (1)\" />\r\n        <item itemvalue=\"Cucumber Java.Feature: Home\" />\r\n        <item itemvalue=\"JUnit.HomeStepdefs\" />\r\n        <item itemvalue=\"JUnit.HomeStepdefs.lutilisateur_est_dans_la_page_home\" />\r\n        <item itemvalue=\"JUnit.HomeStepdefs.ouvrire_la_page_de_produit\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"56739233-ef34-4d25-8529-30fca3dbfffe\" name=\"Changes\" comment=\"\" />\r\n      <created>1664365062474</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1664365062474</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"com1\">\r\n      <created>1664960199913</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1664960199913</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"BDD_Test\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <ignored-roots>\r\n      <path value=\"$PROJECT_DIR$\" />\r\n    </ignored-roots>\r\n    <MESSAGE value=\"com1\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"com1\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision bfc225591489a4f22899f439469c0d673d7ae3c6)
++++ b/.idea/workspace.xml	(date 1664981297161)
+@@ -4,8 +4,8 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="56739233-ef34-4d25-8529-30fca3dbfffe" name="Changes" comment="com1">
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nespresso/home/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nespresso/home/HomePage.java" afterDir="false" />
++    <list default="true" id="56739233-ef34-4d25-8529-30fca3dbfffe" name="Changes" comment="BDD_Test_comm1">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -22,7 +22,7 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="BDD" />
++        <entry key="$PROJECT_DIR$" value="bfc225591489a4f22899f439469c0d673d7ae3c6" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -145,11 +145,11 @@
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="JUnit.HomeStepdefs.ouvrire_la_page_de_produit" />
++        <item itemvalue="JUnit.HomeStepdefs.lutilisateur_est_dans_la_page_home" />
++        <item itemvalue="JUnit.HomeStepdefs" />
+         <item itemvalue="Cucumber Java.Feature: Home (1)" />
+         <item itemvalue="Cucumber Java.Feature: Home" />
+-        <item itemvalue="JUnit.HomeStepdefs" />
+-        <item itemvalue="JUnit.HomeStepdefs.lutilisateur_est_dans_la_page_home" />
+-        <item itemvalue="JUnit.HomeStepdefs.ouvrire_la_page_de_produit" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -169,7 +169,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1664960199913</updated>
+     </task>
+-    <option name="localTasksCounter" value="2" />
++    <task id="LOCAL-00002" summary="BDD_Test_comm1">
++      <created>1664981084342</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1664981084342</updated>
++    </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -177,19 +184,7 @@
+       <map>
+         <entry key="MAIN">
+           <value>
+-            <State>
+-              <option name="FILTERS">
+-                <map>
+-                  <entry key="branch">
+-                    <value>
+-                      <list>
+-                        <option value="BDD_Test" />
+-                      </list>
+-                    </value>
+-                  </entry>
+-                </map>
+-              </option>
+-            </State>
++            <State />
+           </value>
+         </entry>
+       </map>
+@@ -200,6 +195,7 @@
+       <path value="$PROJECT_DIR$" />
+     </ignored-roots>
+     <MESSAGE value="com1" />
+-    <option name="LAST_COMMIT_MESSAGE" value="com1" />
++    <MESSAGE value="BDD_Test_comm1" />
++    <option name="LAST_COMMIT_MESSAGE" value="BDD_Test_comm1" />
+   </component>
+ </project>
+\ No newline at end of file

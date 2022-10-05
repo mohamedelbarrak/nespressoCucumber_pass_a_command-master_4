@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56739233-ef34-4d25-8529-30fca3dbfffe" name="Changes" comment="BDD_Test_comm1">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nespresso/listProduct/ListProductPage.java" afterDir="false" />
+    <list default="true" id="56739233-ef34-4d25-8529-30fca3dbfffe" name="Changes" comment="BDD_Test_comm2(BDD_v1)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nespresso/home/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nespresso/home/HomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/home/HomeStepdefs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/home/HomeStepdefs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/nespresso/listProduct/ListProductPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nespresso/listProduct/ListProductPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +28,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="SOFT" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -174,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664960199913</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="BDD_Test_comm2(BDD_v1)">
+      <created>1664983332862</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1664983332862</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -205,6 +209,7 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="com1" />
-    <option name="LAST_COMMIT_MESSAGE" value="com1" />
+    <MESSAGE value="BDD_Test_comm2(BDD_v1)" />
+    <option name="LAST_COMMIT_MESSAGE" value="BDD_Test_comm2(BDD_v1)" />
   </component>
 </project>

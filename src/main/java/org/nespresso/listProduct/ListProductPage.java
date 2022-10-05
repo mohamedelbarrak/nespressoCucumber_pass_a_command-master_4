@@ -11,6 +11,7 @@ import java.util.List;
 
 import static org.nespresso.home.HomePage.driver;
 
+
 public class ListProductPage {
     @FindBy(xpath = "//div[starts-with(@class, 'ProductList__content')]//div[@class='ProductListGroup'][1]//div[@class='ProductListElementFilter']//child::div[@class='ProductListElement__content ProductListElement__content--capsule']//child::div[starts-with(@id, 'AddToBagButton')]")
     public WebElement addToCart;
