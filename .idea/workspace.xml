@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56739233-ef34-4d25-8529-30fca3dbfffe" name="Changes" comment="BDD_Test_comm2(BDD_v1.1)">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/nespresso/driver/Driver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_10_2022_15_48__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_10_2022_15_48__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_10_2022_15_48__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_10_2022_15_48__Changes_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_10_2022_15_52__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_10_2022_15_52__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_10_2022_15_53__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_10_2022_15_53__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nespresso/home/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nespresso/home/HomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nespresso/home/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nespresso/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/nespresso/listProduct/ListProductPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nespresso/listProduct/ListProductPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/home/HomeStepdefs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/home/HomeStepdefs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/Home.feature" beforeDir="false" afterPath="$PROJECT_DIR$/features/home/Home.feature" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="BDD" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -59,6 +60,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\melbarrak\Tests\Tests_Automatiques\intellij_projects\nespressoCucumber_pass_a_command-master\nespressoCucumber_pass_a_command-master\features\home" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
@@ -103,30 +107,30 @@
       </method>
     </configuration>
     <configuration name="HomeStepdefs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="nespressoCucumber" />
+      <module name="nespressoCucumber_pass_a_command-master" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="home" />
-      <option name="MAIN_CLASS_NAME" value="home.HomeStepdefs" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="HomeStepdefs" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="HomeStepdefs.lutilisateur_est_dans_la_page_home" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="nespressoCucumber" />
+      <module name="nespressoCucumber_pass_a_command-master" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="home" />
-      <option name="MAIN_CLASS_NAME" value="home.HomeStepdefs" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="HomeStepdefs" />
       <option name="METHOD_NAME" value="lutilisateur_est_dans_la_page_home" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -134,15 +138,15 @@
       </method>
     </configuration>
     <configuration name="HomeStepdefs.ouvrire_la_page_de_produit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="nespressoCucumber" />
+      <module name="nespressoCucumber_pass_a_command-master" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="home" />
-      <option name="MAIN_CLASS_NAME" value="home.HomeStepdefs" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="HomeStepdefs" />
       <option name="METHOD_NAME" value="ouvrire_la_page_de_produit" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -151,11 +155,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.HomeStepdefs.ouvrire_la_page_de_produit" />
+        <item itemvalue="JUnit.HomeStepdefs.lutilisateur_est_dans_la_page_home" />
+        <item itemvalue="JUnit.HomeStepdefs" />
         <item itemvalue="Cucumber Java.Feature: Home (1)" />
         <item itemvalue="Cucumber Java.Feature: Home" />
-        <item itemvalue="JUnit.HomeStepdefs" />
-        <item itemvalue="JUnit.HomeStepdefs.lutilisateur_est_dans_la_page_home" />
-        <item itemvalue="JUnit.HomeStepdefs.ouvrire_la_page_de_produit" />
       </list>
     </recent_temporary>
   </component>
@@ -203,7 +207,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="BDD_Test" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
