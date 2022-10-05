@@ -10,14 +10,18 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.junit.Cucumber;
 import org.junit.runner.RunWith;
+import org.nespresso.listProduct.ListProductPage;
+import org.openqa.selenium.WebDriver;
 
 @RunWith(Cucumber.class)
 public class HomeStepdefs {
     HomePage homePage;
-
+    ListProductPage listProductPage;
     @Before
     public void prepateDriver() {
+
         homePage = new HomePage();
+        listProductPage = new ListProductPage();
     }
 
     @Given("^l'utilisateur est dans la page home$")
@@ -37,12 +41,12 @@ public class HomeStepdefs {
 
     @When("^AJOUTER AU PANIER$")
     public void ajouter_au_panier() throws Throwable {
-        homePage.ajouter_au_panier();
+        listProductPage.ajouter_au_panier();
     }
 
     @And("^choisir la quantite (.+)$")
     public void choisir_la_quantite(String quantite) throws Throwable {
-        homePage.choisir_la_quantite(quantite);
+        listProductPage.choisir_la_quantite(quantite);
     }
 
     @Then("^votre panier change (.+)$")

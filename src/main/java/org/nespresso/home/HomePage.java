@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 //BDD_Test
 public class HomePage {
-    WebDriver driver;
+    public static WebDriver driver;
     String webDriverType = "webdriver.chrome.driver";
     String webDriverPath = "C:/melbarrak/Applications/intellijSeleniumJarAndDrivers/chromedriver_win32/chromedriver.exe";
     String nespressoUrl = "https://www.nespresso.com/fr/fr/";
@@ -29,8 +29,8 @@ public class HomePage {
     @FindBy(xpath = "(//span[contains(@class,'HeaderNavigationBarItem')])[1]")
     public WebElement coffeeMenuChoice;
 
-    @FindBy(xpath = "//div[starts-with(@class, 'ProductList__content')]//div[@class='ProductListGroup'][1]//div[@class='ProductListElementFilter']//child::div[@class='ProductListElement__content ProductListElement__content--capsule']//child::div[starts-with(@id, 'AddToBagButton')]")
-    public WebElement addToCart;
+    //@FindBy(xpath = "//div[starts-with(@class, 'ProductList__content')]//div[@class='ProductListGroup'][1]//div[@class='ProductListElementFilter']//child::div[@class='ProductListElement__content ProductListElement__content--capsule']//child::div[starts-with(@id, 'AddToBagButton')]")
+    //public WebElement addToCart;
 
     final String QUANTITY = "//div[starts-with(@class, 'ProductList__content')]//div[@class='ProductListGroup'][1]//div[@class='ProductListElementFilter']//child::div[@class='ProductListElement__content ProductListElement__content--capsule']//child::div[starts-with(@id, 'AddToBagButton')]//descendant::li[@class='PredefinedQuantityList__quantity']["+"2"+"]";
     @FindBy(xpath = QUANTITY)
@@ -69,6 +69,7 @@ public class HomePage {
         coffeeMenuChoice.click();
     }
 
+    /*
     public void ajouter_au_panier(){
         addToCart.click();
     }
@@ -80,6 +81,8 @@ public class HomePage {
         driver.findElement(By.xpath(QUANTITY)).click();
         System.out.println("quantitySelected: " + quantitySelectedIndexForqQuantitysList);
     }
+
+     */
 
     public void votre_panier_change(String quantite) throws InterruptedException {
         //TimeUnit.SECONDS.sleep(3);
