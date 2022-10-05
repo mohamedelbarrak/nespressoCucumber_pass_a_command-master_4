@@ -1,0 +1,16 @@
+Feature: Home feature
+  verifier la page Home
+
+  @Ready
+  Scenario Outline: Commander un produit
+    Given l'utilisateur est dans la page home
+    And accepter les cookies
+    And ouvrire la page de produit
+    When AJOUTER AU PANIER
+    And choisir la quantite <quantite>
+    Then votre panier change <quantite>
+    Examples:
+      | quantite |
+      | 10       |
+      | 20       |
+      |150       |
