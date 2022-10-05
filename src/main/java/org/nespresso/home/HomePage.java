@@ -12,6 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+//BDD_Test_comm2
 //BDD_Test
 public class HomePage {
     public static WebDriver driver;
