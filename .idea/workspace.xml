@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56739233-ef34-4d25-8529-30fca3dbfffe" name="Changes" comment="com1">
+    <list default="true" id="56739233-ef34-4d25-8529-30fca3dbfffe" name="Changes" comment="BDD_Test_comm1">
       <change beforePath="$PROJECT_DIR$/src/main/java/org/nespresso/home/HomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/nespresso/home/HomePage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -169,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664960199913</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="BDD_Test_comm1">
+      <created>1664981084342</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1664981084342</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -200,6 +207,7 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="com1" />
-    <option name="LAST_COMMIT_MESSAGE" value="com1" />
+    <MESSAGE value="BDD_Test_comm1" />
+    <option name="LAST_COMMIT_MESSAGE" value="BDD_Test_comm1" />
   </component>
 </project>
